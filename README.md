@@ -41,6 +41,21 @@ aws s3 sync \
 
 - AWS CLI installation instructions can be found [here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html).
 
+## <a id="toc-folder-structure"></a>Folder Structure
+
+The parent structure of the dataset is as follows.
+
+```
+cellpainting-gallery
+└── cpg0026-lacoste_haghighi-rare-diseases
+    └── broad
+        ├── images
+        ├── workspace
+        └── workspace
+```
+
+
+https://github.com/broadinstitute/cellpainting-gallery/blob/main/folder_structure.md#analysis-folder-structure
 
 # <a id="toc-analysis"></a>Analysis
 ## <a id="toc-tech-rep"></a>`Techinal replicate reproducibility`
