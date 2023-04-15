@@ -50,12 +50,29 @@ cellpainting-gallery
 └── cpg0026-lacoste_haghighi-rare-diseases
     └── broad
         ├── images
-        ├── workspace
+        │   ├── PILOT_1
+        │   │   ├── illum
+        │   │   ├── unprojected_images
+        │   │   └── images [structure](https://github.com/broadinstitute/cellpainting-gallery/blob/main/folder_structure.md#images-folder-structure)
+        │   ├── Cancer_Mutations_Screen 
+        │   ├── Common_Variants
+        │   ├── Kinase_Plates
+        │   ├── Replicates_Original_Screen
+        │   ├── 2021_05_21_QualityControlPathwayArrayedScreen 
+        │   ├── 2022_01_12_Batch1     
+        │   └── 2022_01_12_Batch2
         └── workspace
+            ├── analysis
+            ├── backend
+            ├── load_data_csv
+            ├── metadata
+            └── profiles
 ```
 
-
-https://github.com/broadinstitute/cellpainting-gallery/blob/main/folder_structure.md#analysis-folder-structure
+[images folder structure](https://github.com/broadinstitute/cellpainting-gallery/blob/main/folder_structure.md#images-folder-structure)
+[analysis folder structure](https://github.com/broadinstitute/cellpainting-gallery/blob/main/folder_structure.md#analysis-folder-structure)
+[backend folder structure](https://github.com/broadinstitute/cellpainting-gallery/blob/main/folder_structure.md#backend-folder-structure)
+[load_data_csv folder structure](https://github.com/broadinstitute/cellpainting-gallery/blob/main/folder_structure.md#load_data_csv-folder-structure)
 
 # <a id="toc-analysis"></a>Analysis
 ## <a id="toc-tech-rep"></a>`Techinal replicate reproducibility`
