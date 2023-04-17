@@ -173,7 +173,14 @@ Subsequently, these clipped per-plate values are normalized to a range of 0 to 1
 
 
 ## <a id="toc-tech-rep"></a>Techinal replicate reproducibility
+- The uniformity of single treatment profiles across distinct experimental batches serves as an indicator of data quality. We assess this uniformity through the following procedure:
 
+   - Replicate-level profiles per plate undergo standardization.
+   - The Pearson correlation coefficient is computed for each pair of replicate-level profiles corresponding to the same perturbation.
+   - The distribution of these coefficients for each dataset and modality is depicted in Supplementary Figure 1 as red curves.
+   - The blue curves, juxtaposed to the red curves, represent the null distribution, which displays the correlation coefficient between profile pairs    originating from distinct perturbations.
+   - The non-zero dotted vertical line on the right signifies the 90th percentile of the null distribution.
+   - Perturbations exhibiting an average replicate correlation exceeding the 90th percentile of the null distribution are deemed high-quality data points, suitable for subsequent analyses.
 
 
 ## <a id="toc-prot-loc"></a>Protein Localization
