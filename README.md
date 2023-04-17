@@ -16,10 +16,14 @@
   - [Data Level descriptions](#toc-data-descriptions)
   
 - [Analysis](#toc-analysis)
+  - [Transfection Detection](#toc-trans-dec)
+    - Filter out untransfected (unperturbed) single cells as the first analysis step
+  - [Perturbation Level Profile](#toc-pert-prof)
+    - processing CellProfiler single cell outputs to generate per-well level profiles for each perturbation
   - [Techinal replicate reproducibility](#toc-tech-rep)
     - as a measure of profile quality
-  - [Transfection Detection](#toc-trans-dec)
-    - TBA 
+
+
 
   - [Protein Localization](#toc-prot-loc)
     - TBA 
@@ -32,22 +36,8 @@ TBA
 # <a id="toc-dataset"></a>Dataset
 
 ## <a id="toc-summary"></a>Summary
-This dataset contains 
-
-
-        │   ├── PILOT_1
-        │   │   ├── illum
-        │   │   ├── unprojected_images
-        │   │   └── images [structure](https://github.com/broadinstitute/cellpainting-gallery/blob/main/folder_structure.md#images-folder-structure)
-        │   ├── Cancer_Mutations_Screen 
-        │   ├── Common_Variants
-        │   ├── Kinase_Plates
-        │   ├── Replicates_Original_Screen
-        │   ├── 2021_05_21_QualityControlPathwayArrayedScreen 
-        │   ├── 2022_01_12_Batch1     
-        │   └── 2022_01_12_Batch2
-        
-        
+This dataset contains eight batches of data each having various properties.
+                
 
 | Batch   | Description  | cell painting channels | protein marker channels |
 | ------- | ------------ | ------------------- | ------------------------------------- |
@@ -56,7 +46,7 @@ This dataset contains
 | Common_Variants | follow up WT/MT screen | `Mito`,`ER`,`DNA`                 | `Protein`                                   |
 | Kinase_Plates   | follow up WT/MT screen | `Mito`,`ER`,`DNA`                 | `Protein`                                   |
 | Replicates_Original_Screen   | replicate of intial WT/MT screen | `Mito`,`ER`,`DNA`                 | `Protein`                                   |
-| 2021_05_21_QualityControlPathwayArrayedScreen   | compound screen | `ER`,`DNA`                 | `Protein`                                   |
+| 2021_05_21_QualityControlPathwayArrayedScreen   | compound screen | `ER`,`DNA`                 | `Protein`,`DsRed`                                 |
 | 2022_01_12_Batch1   | compound screen | `DNA`,`Lysosomes`                 | `Protein`,`DsRed`                                      |
 | 2022_01_12_Batch2   | compound screen | `DNA`                 | `Protein`,`DsRed`                                      |
 
@@ -166,6 +156,17 @@ Index(['Metadata_Plate', 'Metadata_Well', 'Metadata_Sample',
 # <a id="toc-analysis"></a>Analysis
 
 ## <a id="toc-trans-dec"></a>Transfection Detection
+- In general, transfection detection is performed by single cell single feature thresholding method for most of the batches. The raw per-plate single-cell feature values are subjected to truncation at the 0.999th percentile of their respective distributions within each plate.
+Subsequently, these clipped per-plate values are normalized to a range of 0 to 1 by employing the per-plate min-max scaling technique. For batch `2022_01_12_Batch1` and `2022_01_12_Batch2`, segmentation is done on `DsRed` channel in image analysis step and any cell that was detected based on that channels was assumed to be transfected. Therefore, CellProfiler outputs for the single cell profiles are just for transfected cells for this batch of data. Single Cell feature used for transfection detection for the remaining batches of data was `Cells_Intensity_IntegratedIntensity_Protein` except for `2021_05_21_QualityControlPathwayArrayedScreen` batch in which we used `Cells_Intensity_UpperQuartileIntensity_DsRed`.
+
+   * **Transfected/Untransfected Profiles:**
+
+## <a id="toc-pert-prof"></a>Perturbation Level Profile
+
+- **Population (Average) Profiles:**
+  - Population profiles per-well are form by averaging the single-cell transfected cells (labeled in a prior step) profiles
+- **Subpopulation (Enrichment) Profiles:**
+  - For extracting subpopulation or enrichement profiles, first we perform a kmeans (k=20) clustering model to a subsampled (1000 cell per plate) population of transfected single cells from all plates. Subpopulation or enrichement profiles for each well are then formed by per-cluster abundance of single cells in that well.
 
 
 ## <a id="toc-tech-rep"></a>Techinal replicate reproducibility
@@ -173,7 +174,7 @@ Index(['Metadata_Plate', 'Metadata_Well', 'Metadata_Sample',
 
 
 ## <a id="toc-prot-loc"></a>Protein Localization
-
+- `Manual annotations`: for the follwing batches of data, we have per-well annotation derived by biologist's visual inspection of data and 
 
 
 
