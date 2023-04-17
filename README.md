@@ -22,12 +22,15 @@
     - processing CellProfiler single cell outputs to generate per-well level profiles for each perturbation
   - [Techinal replicate reproducibility](#toc-tech-rep)
     - as a measure of profile quality
-
-
-
   - [Protein Localization](#toc-prot-loc)
-    - TBA 
- 
+    - Supervised population level classification of protein localization 
+  - [WT/MT impact-score](#toc-prot-loc)
+    - Supervised population level classification of protein localization 
+  - [Variant/Variant+Treatment reversal-score](#toc-prot-loc)
+    - Supervised population level classification of protein localization 
+  - [Protein Localization](#toc-prot-loc)
+    - Supervised population level classification of protein localization 
+
   
 # <a id="toc-abstract"></a>Abstract
 
