@@ -11,16 +11,16 @@
 - [Dataset](#toc-dataset)
   - [`Download`](#toc-download)
     - [Downloading the data residing on s3 cellpainting-gallery bucket](#toc-extracting)
-  - [`Folder Structure`](#toc-folder-structure)
-  - [`Data Level descriptions`](#toc-data-descriptions)
+  - [Folder Structure](#toc-folder-structure)
+  - [Data Level descriptions](#toc-data-descriptions)
   
 - [Analysis](#toc-analysis)
-  - [`Techinal replicate reproducibility`](#toc-tech-rep)
+  - [Techinal replicate reproducibility](#toc-tech-rep)
     - as a measure of profile quality
-  - [`Transfection Detection`](#toc-trans-dec)
+  - [Transfection Detection](#toc-trans-dec)
     - TBA 
 
-  - [`Protein Localization`](#toc-prot-loc)
+  - [Protein Localization](#toc-prot-loc)
     - TBA 
  
   
@@ -74,9 +74,34 @@ cellpainting-gallery
 - [backend folder structure](https://github.com/broadinstitute/cellpainting-gallery/blob/main/folder_structure.md#backend-folder-structure)
 - [load_data_csv folder structure](https://github.com/broadinstitute/cellpainting-gallery/blob/main/folder_structure.md#load_data_csv-folder-structure)
 
+
+# <a id="toc-data-descriptions"></a>Data Level descriptions
+## Images
+- Images (unprojected)
+   - File names pattern:  r(n)c(n)f(n)p(n)-c(n)sk1fk1fl1.tiff
+     -  where (n) is a number describing each variable (the letters). 
+
+     - r = row
+     - c = column
+     - f = field
+     - p = position in the z-stack
+     - c = channel
+     
+## CellProfiler generated single-cell profiles and cell outlines
+  - This follows standard (link) CP outputs 
+
+## Preprocessed perturbation level profiles
+  - Population profiles
+  - Enrichment profiles
+
+
 # <a id="toc-analysis"></a>Analysis
-## <a id="toc-tech-rep"></a>`Techinal replicate reproducibility`
 
-## <a id="toc-trans-dec"></a>`Transfection Detection`
+## <a id="toc-trans-dec"></a>Transfection Detection
 
-## <a id="toc-prot-loc"></a>`Protein Localization`
+
+## <a id="toc-tech-rep"></a>Techinal replicate reproducibility
+
+
+
+## <a id="toc-prot-loc"></a>Protein Localization
