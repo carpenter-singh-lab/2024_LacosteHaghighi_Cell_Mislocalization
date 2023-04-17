@@ -123,18 +123,31 @@ cellpainting-gallery
 ## <a id="toc-metadata"></a>Metadata
 
 
+        │   ├── PILOT_1
+        │   │   ├── illum
+        │   │   ├── unprojected_images
+        │   │   └── images [structure](https://github.com/broadinstitute/cellpainting-gallery/blob/main/folder_structure.md#images-folder-structure)
+        │   ├── Cancer_Mutations_Screen 
+        │   ├── Common_Variants
+        │   ├── Kinase_Plates
+        │   ├── Replicates_Original_Screen
+        │   ├── 2021_05_21_QualityControlPathwayArrayedScreen 
+        │   ├── 2022_01_12_Batch1     
+        │   └── 2022_01_12_Batch2
+        
+
 | Column  | Description  | Batches which have this column |
 | ------- | ------------ | ------------------- |
-| Metadata_Batch     | 977 | 1565                |
-| Metadata_Plate     | 977 | 1565                |
-| Metadata_Well | 977 | 1570                |
-| Metadata_Sample   | 978 | 1569                |
-| Variant   | 978 | 1569                |
-| Gene   | 978 | 1569                |
-| MT   | 978 | 1569                |
-| Treatment   | 978 | 1569                |
+| Metadata_Batch| one of eight batches | all                |
+| Metadata_Plate| plate key | all                |
+| Metadata_Well | well key | all                |
+| Metadata_Sample   | WT+MT string | all                |
+| Variant   | WT+MT string | all                |
+| Gene   | WT string | all                |
+| MT   | MT string | all                |
+| Treatment   | chemical perturbation added to genetic perturbation  | 2021_05_21_QualityControlPathwayArrayedScreen, 2022_01_12_Batch1,  2022_01_12_Batch2              |
 | Metadata_Sample_Unique   | 978 | 1677                |
-| Metadata_Location    | 978 | 1670                |
+| Metadata_Location    | primary location of protein by visual annotation| PILOT_1                |
 
 Metadata_Sample
 Index(['Metadata_Plate', 'Metadata_Well', 'Metadata_Sample',
