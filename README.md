@@ -9,6 +9,7 @@
 
 - [Abstract](#toc-abstract)
 - [Dataset](#toc-dataset)
+  - [Summary](#toc-summary)
   - [Download](#toc-download)
     - [Downloading the data residing on s3 cellpainting-gallery bucket](#toc-extracting)
   - [Folder Structure](#toc-folder-structure)
@@ -29,6 +30,38 @@
 TBA
 
 # <a id="toc-dataset"></a>Dataset
+
+## <a id="toc-summary"></a>Summary
+This dataset contains 
+
+
+        │   ├── PILOT_1
+        │   │   ├── illum
+        │   │   ├── unprojected_images
+        │   │   └── images [structure](https://github.com/broadinstitute/cellpainting-gallery/blob/main/folder_structure.md#images-folder-structure)
+        │   ├── Cancer_Mutations_Screen 
+        │   ├── Common_Variants
+        │   ├── Kinase_Plates
+        │   ├── Replicates_Original_Screen
+        │   ├── 2021_05_21_QualityControlPathwayArrayedScreen 
+        │   ├── 2022_01_12_Batch1     
+        │   └── 2022_01_12_Batch2
+        
+        
+
+| Batch   | Description  | cell painting channels | protein marker channels |
+| ------- | ------------ | ------------------- | ------------------------------------- |
+| PILOT_1     | initial WT/MT screen | `Mito`,`ER`,`DNA`                | `Protein`                                   |
+| Cancer_Mutations_Screen     | follow up WT/MT screen | `Mito`,`ER`,`DNA`                 | `Protein`                                   |
+| Common_Variants | follow up WT/MT screen | `Mito`,`ER`,`DNA`                 | `Protein`                                   |
+| Kinase_Plates   | follow up WT/MT screen | `Mito`,`ER`,`DNA`                 | `Protein`                                   |
+| Replicates_Original_Screen   | replicate of intial WT/MT screen | `Mito`,`ER`,`DNA`                 | `Protein`                                   |
+| 2021_05_21_QualityControlPathwayArrayedScreen   | compound screen | `ER`,`DNA`                 | `Protein`                                   |
+| 2022_01_12_Batch1   | compound screen | `DNA`,`Lysosomes`                 | `Protein`,`DsRed`                                      |
+| 2022_01_12_Batch2   | compound screen | `DNA`                 | `Protein`,`DsRed`                                      |
+
+
+
 ## <a id="toc-download"></a>Download
 
 They can be downloaded at no cost and no need for registration of any sort, using the command:
