@@ -123,18 +123,18 @@ cellpainting-gallery
 ## <a id="toc-metadata"></a>Metadata
 
 
-| Column  | Description  | Batches which have this column | CP<br/>`normalized_variable_selected` |
-| ------- | ------------ | ------------------- | ------------------------------------- |
-| Metadata_Batch     | 977 | 1565                | 727                                   |
-| Metadata_Plate     | 977 | 1565                | 727                                   |
-| Metadata_Well | 977 | 1570                | 601                                   |
-| Metadata_Sample   | 978 | 1569                | 291                                   |
-| Variant   | 978 | 1569                | 291                                   |
-| Gene   | 978 | 1569                | 291                                   |
-| MT   | 978 | 1569                | 291                                   |
-| Treatment   | 978 | 1569                | 291                                   |
-| Metadata_Sample_Unique   | 978 | 1677                | 63                                    |
-| Metadata_Location    | 978 | 1670                | 119                                   |
+| Column  | Description  | Batches which have this column |
+| ------- | ------------ | ------------------- |
+| Metadata_Batch     | 977 | 1565                |
+| Metadata_Plate     | 977 | 1565                |
+| Metadata_Well | 977 | 1570                |
+| Metadata_Sample   | 978 | 1569                |
+| Variant   | 978 | 1569                |
+| Gene   | 978 | 1569                |
+| MT   | 978 | 1569                |
+| Treatment   | 978 | 1569                |
+| Metadata_Sample_Unique   | 978 | 1677                |
+| Metadata_Location    | 978 | 1670                |
 
 Metadata_Sample
 Index(['Metadata_Plate', 'Metadata_Well', 'Metadata_Sample',
@@ -184,7 +184,7 @@ Subsequently, these clipped per-plate values are normalized to a range of 0 to 1
 
 
 ## <a id="toc-prot-loc"></a>Protein Localization
-- `Manual annotations`: for the follwing batches of data, we have per-well annotation derived by biologist's visual inspection of data and 
+- `Manual annotations`: for the follwing batches of data, we have per-well annotation captured by biologist's visual inspection of data and ...
 
 
 
