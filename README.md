@@ -79,7 +79,7 @@ cellpainting-gallery
         │   ├── PILOT_1
         │   │   ├── illum
         │   │   ├── unprojected_images
-        │   │   └── images [structure](https://github.com/broadinstitute/cellpainting-gallery/blob/main/folder_structure.md#images-folder-structure)
+        │   │   └── images
         │   ├── Cancer_Mutations_Screen 
         │   ├── Common_Variants
         │   ├── Kinase_Plates
