@@ -1,0 +1,92 @@
+# Main entrypoint of the workflow. 
+# Please follow the best practices: 
+# https://snakemake.readthedocs.io/en/stable/snakefiles/best_practices.html,
+# in particular regarding the standardized folder structure mentioned there. 
+
+from snakemake.utils import min_version
+
+rule all:
+    input:
+        "{rootDir}/results/Impact-Scores/Method-MeanProfiles/{batch_12}/impact_scores_perplate_{today}.csv".format(
+            rootDir=config["rootDir"],
+            batch_12=config["batch_12"],
+            today=config["today"]
+        )
+
+rule save_intensity_features:
+    input:
+        "{rootDir}/metadata/reprocessed/{batch_12}.csv".format(
+            rootDir=config["rootDir"],
+            batch_12=config["batch_12"]
+        )
+    output:
+        "{rootDir}/intensity_features/{batch_12}.csv".format(
+            rootDir=config["rootDir"],
+            batch_12=config["batch_12"]
+        )
+    shell:
+        """
+        python save_intensity_features.py {input} {output}
+        """
+
+rule read_intensity_features:
+    input:
+        rules.save_intensity_features.output
+    output:
+        "{rootDir}/intensity_features/distribution/{batch_12}.csv".format(
+            rootDir=config["rootDir"],
+            batch_12=config["batch_12"],
+        )
+    shell:
+        """
+        python read_intensity_features.py {input} {output}
+        """
+
+rule generate_population_profiles:
+    input:
+        rules.read_intensity_features.output,
+        "{rootDir}/metadata.csv"  # or wherever your annot_df is located
+    output:
+        "{rootDir}/population_profiles/{batch_12}.csv".format(
+            rootDir=config["rootDir"],
+            batch_12=config["batch_12"],
+        )
+    shell:
+        """
+        python generate_population_profiles.py {input[0]} {input[1]} {config[rootDir]} {config[batch_12]} {config} > {output}
+        """
+
+rule load_preprocess_profiles:
+    input:
+        rules.generate_population_profiles.output
+    output:
+        "{rootDir}/preprocessed_profiles/{batch_12}.csv".format(
+            rootDir=config["rootDir"],
+            batch_12=config["batch_12"],
+        )
+    shell:
+        """
+        python load_preprocess_profiles.py {input} {output} {config}
+        """
+
+rule calculate_replicate_correlation:
+    input:
+        rules.load_preprocess_profiles.output
+    output:
+        "{rootDir}/results/replicate_corr_curves/{batch_12}/{scal_status}_{zscor_status}.csv".format(
+            rootDir=config["rootDir"],
+            batch_12=config["batch_12"],
+            scal_status=config["scal_status"],
+            zscor_status=config["zscor_status"],
+        )
+    shell:
+        """
+        python calculate_replicate_correlation.py {input} {output} {config}
+        """
+
+rule calculate_impact_scores:
+    input:
+        rules.calculate_replicate_correlation.output
+    output:
+        "{rootDir}/results/Impact-Scores/Method-MeanProfiles/{batch_12}/impact_scores_perplate_{today}.csv".format(
+            rootDir=config["rootDir

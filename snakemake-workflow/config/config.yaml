@@ -1,0 +1,41 @@
+rootDir: "/home/ubuntu/bucket/projects/2017_09_27_RareDiseases_Taipale/workspace"
+batch_12: "set1_set2"
+
+channels_used: ["Protein"]
+
+intFeatures:
+  - "Cells_Intensity_UpperQuartileIntensity_Protein"
+  - "Cells_Intensity_MeanIntensity_Protein"
+  - "Cells_Intensity_MaxIntensity_Protein"
+
+plot_int_params:
+  log_scale_enabled: True
+  sharex_enabled: False
+  hist_n_bins: 1000
+  zero_offset_4logscale_plot: 0.00001
+  intFeature: "Cells_Intensity_MeanIntensity_Protein"
+  hue_column: "Metadata_transfection"
+
+precomputed_params_batches:
+  Maxproj_Replicates_Original_Screen: [0.0033,0.023]
+  Maxproj_Kinase_Plates: [0.0018,0.0234]
+  Maxproj_Common_Variants: [0.0097,0.0225]
+  Maxproj_Cancer_Mutations_Screen: [0.0065,0.0228]
+  PILOT_1_maxproj: [0.005,0.0165]
+
+transfection_params_dict:
+  Method: "single_intensity_feature_thrsh"
+  intensity_feature_to_use: "Cells_Intensity_MeanIntensity_Protein"
+  thresholding_method: "precomputed_batch_specific_thrsh"
+  pre_detection_scaler: "MinMax"
+  precomputed_params: []
+
+feature_scaling_params_dict:
+  feature_scaler: "Robust"
+  sc_per_plate_scaling: "sc_scaled_per_plate"
+  zscored_profiles: [False, "untransfected"]
+  post_scale_all_profiles: [False, "Standard"]
+
+dirs_params_dict:
+  rootDir: "{rootDir}"
+  profiles_folder_in_workspace: "population_profiles"
