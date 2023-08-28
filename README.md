@@ -29,7 +29,13 @@
   - [Variant/Variant+Treatment reversal-score](#toc-prot-loc)
     - Supervised population level classification of protein localization 
   - [Protein Localization](#toc-prot-loc)
-    - Supervised population level classification of protein localization 
+    - Supervised population level classification of protein localization
+   
+- [Results](#toc-results)
+  - [Differental Phenotype Exploration](#toc-diff-exp)
+    - Plots exploring distinguishable WT/MT phenotypes
+    - Plots for exploring and visualizing the distinguishable/non distinguishable single cell subpoulations
+    - Impact scores based on each level of perturbation profiles
 
   
 # <a id="toc-abstract"></a>Abstract
@@ -254,6 +260,10 @@ Subsequently, these clipped per-plate values are normalized to a range of 0 to 1
 ## <a id="toc-prot-loc"></a>Protein Localization
 - `Manual annotations`: for the following batches of data, we have per-well annotation captured by biologist's visual inspection of data and ...
 
-
+# <a id="toc-results"></a>Results
+## <a id="toc-diff-exp"></a>Differental Phenotype Exploration
+    - Plots exploring distinguishable WT/MT phenotypes
+    - Plots for exploring and visualizing the distinguishable/non distinguishable single cell subpoulations
+    - Impact scores based on each level of perturbation profiles
 
 
