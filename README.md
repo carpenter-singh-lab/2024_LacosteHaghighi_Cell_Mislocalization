@@ -42,16 +42,16 @@ TBA
 This dataset contains eight batches of data each having various properties.
                 
 
-| Batch   | Description  | cell painting channels | protein marker channels |
-| ------- | ------------ | ------------------- | ------------------------------------- |
-| PILOT_1     | initial WT/MT screen | `Mito`,`ER`,`DNA`                | `Protein`                                   |
-| Cancer_Mutations_Screen     | follow up WT/MT screen | `Mito`,`ER`,`DNA`                 | `Protein`                                   |
-| Common_Variants | follow up WT/MT screen | `Mito`,`ER`,`DNA`                 | `Protein`                                   |
-| Kinase_Plates   | follow up WT/MT screen | `Mito`,`ER`,`DNA`                 | `Protein`                                   |
-| Replicates_Original_Screen   | replicate of intial WT/MT screen | `Mito`,`ER`,`DNA`                 | `Protein`                                   |
-| 2021_05_21_QualityControlPathwayArrayedScreen   | compound screen | `ER`,`DNA`                 | `Protein`,`DsRed`                                 |
-| 2022_01_12_Batch1   | compound screen | `DNA`,`Lysosomes`                 | `Protein`,`DsRed`                                      |
-| 2022_01_12_Batch2   | compound screen | `DNA`                 | `Protein`,`DsRed`                                      |
+| Batch   | Description  | cell painting channels | protein marker channels | Size (max projected images/ single cell sqlite files) |
+| ------- | ------------ | ------------------- | ------------------------------------- | ------------------------------------- |
+| PILOT_1     | initial WT/MT screen | `Mito`,`ER`,`DNA`                | `Protein`                                          | 1.04 TB /  74.12 GB | 
+| Cancer_Mutations_Screen     | follow up WT/MT screen | `Mito`,`ER`,`DNA`                 | `Protein`                       | 144.5 GB /  14.61 GB          |
+| Common_Variants | follow up WT/MT screen | `Mito`,`ER`,`DNA`                 | `Protein`                                   | 56.08 GB /  4.6 GB |
+| Kinase_Plates   | follow up WT/MT screen | `Mito`,`ER`,`DNA`                 | `Protein`                                   | 84.06 GB /  8.26 GB
+| Replicates_Original_Screen   | replicate of intial WT/MT screen | `Mito`,`ER`,`DNA`                 | `Protein`            | 376.69 GB / 32.88 GB          |
+| 2021_05_21_QualityControlPathwayArrayedScreen   | compound screen | `ER`,`DNA`                 | `Protein`,`DsRed`         |  699.91 GB /
+| 2022_01_12_Batch1   | compound screen | `DNA`,`Lysosomes`                 | `Protein`,`DsRed`                              |  223.68 GB /
+| 2022_01_12_Batch2   | compound screen | `DNA`                 | `Protein`,`DsRed`                                          |  83.97 GB /
 
 
 
@@ -78,7 +78,7 @@ cellpainting-gallery
         ├── images
         │   ├── PILOT_1
         │   │   ├── illum
-        │   │   ├── unprojected_images
+        │   │   ├── images_unprojected
         │   │   └── images
         │   ├── Cancer_Mutations_Screen 
         │   ├── Common_Variants
@@ -92,26 +92,39 @@ cellpainting-gallery
             ├── backend
             ├── load_data_csv
             ├── metadata
+            │   ├── reprocessed
+            │   └── raw
             └── profiles
+                 ├── singlecell_profiles (Transfected per well single cells)
+                 ├── enrichment_profiles
+                 └── population_profiles (Average of transfected and untransfected per well)
+
+
 ```
 
-- [images folder structure](https://github.com/broadinstitute/cellpainting-gallery/blob/main/folder_structure.md#images-folder-structure)
-- [analysis folder structure](https://github.com/broadinstitute/cellpainting-gallery/blob/main/folder_structure.md#analysis-folder-structure)
-- [backend folder structure](https://github.com/broadinstitute/cellpainting-gallery/blob/main/folder_structure.md#backend-folder-structure)
-- [load_data_csv folder structure](https://github.com/broadinstitute/cellpainting-gallery/blob/main/folder_structure.md#load_data_csv-folder-structure)
+General structure of the images, analysis, backend and load_data_csv for all projects in cellpainting-gallery can be found in the below links:
+    - [images folder structure](https://github.com/broadinstitute/cellpainting-gallery/blob/main/folder_structure.md#images-folder-structure)
+    - [analysis folder structure](https://github.com/broadinstitute/cellpainting-gallery/blob/main/folder_structure.md#analysis-folder-structure)
+    - [backend folder structure](https://github.com/broadinstitute/cellpainting-gallery/blob/main/folder_structure.md#backend-folder-structure)
+    - [load_data_csv folder structure](https://github.com/broadinstitute/cellpainting-gallery/blob/main/folder_structure.md#load_data_csv-folder-structure)
 
 
 ## <a id="toc-data-descriptions"></a>Data Level descriptions
 ### Images
-- Images (unprojected)
+- [General images folder structure for all projects in cellpainting-gallery](https://github.com/broadinstitute/cellpainting-gallery/blob/main/folder_structure.md#images-folder-structure)
+- Image file name pattern (`images_unprojected` subfolder)
    - File names pattern:  r(n)c(n)f(n)p(n)-c(n)sk1fk1fl1.tiff
-     -  where (n) is a number describing each variable (the letters). 
+         -  (where (n) is a number describing each variable (the letters).)
 
      - r = row
      - c = column
      - f = field
      - p = position in the z-stack
      - c = channel
+    
+- Image file name pattern (`images` subfolder)
+  - same as above except that p(n) is always p01
+  - These images are max projected images and have been used for inputs to CellProfiler software for feature extraction
      
 ### CellProfiler generated single-cell profiles and cell outlines
   - This follows standard (link) CP outputs 
@@ -121,20 +134,16 @@ cellpainting-gallery
   - Enrichment profiles
 
 ## <a id="toc-metadata"></a>Metadata
-
-
-        │   ├── PILOT_1
-        │   │   ├── illum
-        │   │   ├── unprojected_images
-        │   │   └── images [structure](https://github.com/broadinstitute/cellpainting-gallery/blob/main/folder_structure.md#images-folder-structure)
-        │   ├── Cancer_Mutations_Screen 
-        │   ├── Common_Variants
-        │   ├── Kinase_Plates
-        │   ├── Replicates_Original_Screen
-        │   ├── 2021_05_21_QualityControlPathwayArrayedScreen 
-        │   ├── 2022_01_12_Batch1     
-        │   └── 2022_01_12_Batch2
-        
+- each batch has a raw annotation file provided by the wet lab and a reprocessed and standardized version that is used as the input for the analysis
+```
+cellpainting-gallery
+└── cpg0026-lacoste_haghighi-rare-diseases
+    └── broad
+        └── workspace
+            └── metadata
+               ├── reprocessed
+               └── raw
+```
 
 | Column  | Description  | Batches which have this column |
 | ------- | ------------ | ------------------- |
