@@ -100,6 +100,8 @@ def read_merge_preprocess_meanProfiles(annot_df_batches,read_pop_params):
         print(len(feats_intersection_batches),len(cp_features_analysis_batch_ls[bi]))
         
 
+
+        
     if feature_params['post_scale_all_profiles'][0]:
 #             dataScaled=scaler.fit_transform(df2.loc[:,cpFeatures4scale])
 #             df_scaled[cpFeatures4scale]=dataScaled
@@ -144,13 +146,27 @@ def main():
 
     annot_df = pd.read_csv(os.path.join(rootDir, "image_level_annot_df.csv"))
 
+    # Step 1: Load and preprocess profiles
     df_scaled_annot, cpFeats_A, cpFeats_P, cpFeats_NP = read_merge_preprocess_meanProfiles(annot_df, read_pop_params)
 
     dfTransSummary = df_scaled_annot[annot_df.columns.tolist() + ['n_transf', 'n_untransf', 'transf_Ratio']]
     df_scaled_annot = df_scaled_annot[df_scaled_annot['Metadata_transfection'] == False]
     df_scaled_annot = df_scaled_annot[df_scaled_annot['n_transf'] > 5].reset_index(drop=True)
 
-    # Now you can continue processing df_scaled_annot, cpFeats_A, cpFeats_P, cpFeats_NP according to your needs
+    # Step 2: Calculate replicate correlation
+    df_rep_level_scaled, repCorr_df_avg = calculate_replicate_correlation_func(df_scaled_annot, cpFeats_P, cpFeats_NP, config)
+
+    # Step 3: Calculate impact scores
+    impact_scores = calculate_impact_scores_func(df_rep_level_scaled, repCorr_df_avg, config)
+
+    # Save the results
+    df_scaled_annot.to_csv(output[0], index=False)
+    repCorr_df_avg.to_csv(output[1], index=False)
+    impact_scores.to_csv(output[2], index=False)
+
 
 if __name__ == "__main__":
-    main()
+    input_data = sys.argv[1]
+    output = sys.argv[2:5]  # three output files
+    config_path = sys.argv[5]
+    main(input_data, output, config_path)

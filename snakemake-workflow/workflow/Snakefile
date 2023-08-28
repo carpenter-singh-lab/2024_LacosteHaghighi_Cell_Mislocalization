@@ -56,37 +56,26 @@ rule generate_population_profiles:
         python generate_population_profiles.py {input[0]} {input[1]} {config[rootDir]} {config[batch_12]} {config} > {output}
         """
 
-rule load_preprocess_profiles:
+rule preprocess_calculateCorrelation_calculateImpact:
     input:
         rules.generate_population_profiles.output
     output:
-        "{rootDir}/preprocessed_profiles/{batch_12}.csv".format(
+        preprocessed = "{rootDir}/preprocessed_profiles/{batch_12}.csv".format(
             rootDir=config["rootDir"],
             batch_12=config["batch_12"],
-        )
-    shell:
-        """
-        python load_preprocess_profiles.py {input} {output} {config}
-        """
-
-rule calculate_replicate_correlation:
-    input:
-        rules.load_preprocess_profiles.output
-    output:
-        "{rootDir}/results/replicate_corr_curves/{batch_12}/{scal_status}_{zscor_status}.csv".format(
+        ),
+        corr_results = "{rootDir}/results/replicate_corr_curves/{batch_12}/{scal_status}_{zscor_status}.csv".format(
             rootDir=config["rootDir"],
             batch_12=config["batch_12"],
             scal_status=config["scal_status"],
             zscor_status=config["zscor_status"],
+        ),
+        impact_scores = "{rootDir}/results/Impact-Scores/Method-MeanProfiles/{batch_12}/impact_scores_perplate_{today}.csv".format(
+            rootDir=config["rootDir"],
+            batch_12=config["batch_12]",
+            today=datetime.date.today().strftime("%Y%m%d")
         )
     shell:
         """
-        python calculate_replicate_correlation.py {input} {output} {config}
+        python preprocess_calculateCorrelation_calculateImpact.py {input} {output.preprocessed} {output.corr_results} {output.impact_scores} {config}
         """
-
-rule calculate_impact_scores:
-    input:
-        rules.calculate_replicate_correlation.output
-    output:
-        "{rootDir}/results/Impact-Scores/Method-MeanProfiles/{batch_12}/impact_scores_perplate_{today}.csv".format(
-            rootDir=config["rootDir
