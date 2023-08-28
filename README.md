@@ -136,9 +136,11 @@ General structure of the images, analysis, backend and load_data_csv for all pro
         - [backend folder structure](https://github.com/broadinstitute/cellpainting-gallery/blob/main/folder_structure.md#backend-folder-structure)
 
 ### Preprocessed perturbation level/single cell level profiles
-  - Population profiles `enrichment_profiles`
+  - Singlecell profiles `singlecell_profiles`
+    - Singlecell profiles are transfected single cells per well, saved to reduce computational burden of single cell analysis and data explorations
+  - Population profiles `population_profiles`
     - population profiles are formed by first detecting the transferected single cells per well and then aggregation of the transfected single cells per well 
-  - Enrichment profiles
+  - Enrichment profiles `enrichment_profiles`
     - Enrichment profiles are basically the histogram of cell counts per clusters defined in an experiment level
    
 ```
@@ -148,14 +150,30 @@ cellpainting-gallery
         ├── images
         └── workspace
             └── profiles
-                 ├── singlecell_profiles (Transfected per well single cells)
+                 ├── singlecell_profiles (transfected per well single cells)
+                 │   ├── PILOT_1
+                 │   │   ├── RC4_IF_01
+                 │   │   |   ├── RC4_IF_01_B05.csv.gz
+                 │   │   |        ├── RC4_IF_01_B05.csv.gz
+                 │   │   |        ├── RC4_IF_01_B06.csv.gz
+                 │   │   |        ...
+                 │   │   ├──  RC4_IF_02
+                 │   |   ...
+                 │   ├── Cancer_Mutations_Screen
+                 │   ...
                  ├── enrichment_profiles
-                 └── population_profiles (Average of transfected and untransfected per well)
+                 └── population_profiles (average of transfected and untransfected per well)
+                    ├── PILOT_1
+                    │   ├── RC4_IF_01
+                    │   |   └── RC4_IF_01.csv.gz
+                    │   ├──  RC4_IF_02
+                    |   ...
+                    ├── Cancer_Mutations_Screen 
+                    ...
 
 ```
 
 
-      
 ## <a id="toc-metadata"></a>Metadata
 - each batch has a raw annotation file provided by the wet lab and a reprocessed and standardized version that is used as the input for the analysis
 
@@ -184,6 +202,8 @@ cellpainting-gallery
 | Metadata_Sample_Unique   | 978 | 1677                |
 | Metadata_Location    | primary location of protein by visual annotation| PILOT_1                |
 
+<!--
+
 Metadata_Sample
 Index(['Metadata_Plate', 'Metadata_Well', 'Metadata_Sample',
        'Metadata_Location', 'Metadata_Notes', 'Metadata_Efficiency', 'rep',
@@ -202,7 +222,7 @@ Index(['Metadata_Plate', 'Metadata_Well', 'Metadata_Sample',
        'Different antibody used in 647?', 'Gene', 'MT',
        'Metadata_Sample_Unique', 'batch', 'Metadata_Plate2',
        'Metadata_batch_Plate', 'rep', 'control'   
-
+-->
 
 # <a id="toc-analysis"></a>Analysis
 
@@ -212,7 +232,7 @@ Subsequently, these clipped per-plate values are normalized to a range of 0 to 1
 
    * **Transfected/Untransfected Profiles:**
 
-## <a id="toc-pert-prof"></a>Perturbation Level Profile
+## <a id="toc-pert-prof"></a> Forming Perturbation Level Profile
 
 - **Population (Average) Profiles:**
   - Population profiles per-well are form by averaging the single-cell transfected cells (labeled in a prior step) profiles
@@ -232,7 +252,7 @@ Subsequently, these clipped per-plate values are normalized to a range of 0 to 1
 
 
 ## <a id="toc-prot-loc"></a>Protein Localization
-- `Manual annotations`: for the follwing batches of data, we have per-well annotation captured by biologist's visual inspection of data and ...
+- `Manual annotations`: for the following batches of data, we have per-well annotation captured by biologist's visual inspection of data and ...
 
 
 
