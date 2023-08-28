@@ -13,7 +13,7 @@
   - [Download](#toc-download)
     - [Downloading the data residing on s3 cellpainting-gallery bucket](#toc-extracting)
   - [Folder Structure](#toc-folder-structure)
-  - [Data Level descriptions](#toc-data-descriptions)
+  - [Descriptions of each data level](#toc-data-descriptions)
   
 - [Analysis](#toc-analysis)
   - [Transfection Detection](#toc-trans-dec)
@@ -125,16 +125,40 @@ General structure of the images, analysis, backend and load_data_csv for all pro
 - Image file name pattern (`images` subfolder)
   - same as above except that p(n) is always p01
   - These images are max projected images and have been used for inputs to CellProfiler software for feature extraction
+
+### CellProfiler software outputs
+   - pipelines can be found at load_data_csv folder which follows [the standard load_data_csv folder structure](https://github.com/broadinstitute/cellpainting-gallery/blob/main/folder_structure.md#load_data_csv-folder-structure)
      
-### CellProfiler generated single-cell profiles and cell outlines
-  - This follows standard (link) CP outputs 
+  - CellProfiler generated single-cell profiles and cell outlines
+    - This follows standard (link) CP outputs
+      - General structure of analysis and backend for all projects in cellpainting-gallery can be found in the below links:
+        - [analysis folder structure](https://github.com/broadinstitute/cellpainting-gallery/blob/main/folder_structure.md#analysis-folder-structure)
+        - [backend folder structure](https://github.com/broadinstitute/cellpainting-gallery/blob/main/folder_structure.md#backend-folder-structure)
 
-### Preprocessed perturbation level profiles
-  - Population profiles
+### Preprocessed perturbation level/single cell level profiles
+  - Population profiles `enrichment_profiles`
+    - population profiles are formed by first detecting the transferected single cells per well and then aggregation of the transfected single cells per well 
   - Enrichment profiles
+    - Enrichment profiles are basically the histogram of cell counts per clusters defined in an experiment level
+   
+```
+cellpainting-gallery
+└── cpg0026-lacoste_haghighi-rare-diseases
+    └── broad
+        ├── images
+        └── workspace
+            └── profiles
+                 ├── singlecell_profiles (Transfected per well single cells)
+                 ├── enrichment_profiles
+                 └── population_profiles (Average of transfected and untransfected per well)
 
+```
+
+
+      
 ## <a id="toc-metadata"></a>Metadata
 - each batch has a raw annotation file provided by the wet lab and a reprocessed and standardized version that is used as the input for the analysis
+
 ```
 cellpainting-gallery
 └── cpg0026-lacoste_haghighi-rare-diseases
@@ -144,6 +168,8 @@ cellpainting-gallery
                ├── reprocessed
                └── raw
 ```
+
+
 
 | Column  | Description  | Batches which have this column |
 | ------- | ------------ | ------------------- |
