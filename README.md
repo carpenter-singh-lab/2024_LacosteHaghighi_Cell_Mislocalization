@@ -1,7 +1,7 @@
 # Pervasive mislocalization of pathogenic coding variants underlying human diseases
 
 
- [Link to Paper](will be added after submision to bioarchive)
+ [Link to biorxiv submission](https://www.biorxiv.org/content/10.1101/2023.09.05.556368v1.full.pdf)
  
  
  
@@ -40,7 +40,7 @@
   
 # <a id="toc-abstract"></a>Abstract
 
-TBA
+Widespread genome and exome sequencing has yielded thousands of missense variants predicted or confirmed as disease-causing. This creates a new bottleneck: determining the functional impact of each variant - largely a painstaking, customized process undertaken one or a few gene(s) and/or variant(s) at a time. Here, we assay the impact of coding variation on protein localization for over 3,500 missense variants across >1,000 genes and phenotypes using a high-throughput imaging platform. We discovered that mislocalization is a common consequence of coding variation, affecting about one-sixth of all pathogenic missense variants, all cellular compartments, and recessive and dominant disorders alike. Mislocalization is primarily driven by effects on protein stability and membrane insertion rather than disruptions of trafficking signals or specific protein-protein interactions. Furthermore, mislocalization patterns help explain pleiotropy and disease severity and provide insights on variants of unknown significance. The resulting publicly available resource will likely accelerate the understanding of coding variation in human diseases.
 
 # <a id="toc-dataset"></a>Dataset
 
